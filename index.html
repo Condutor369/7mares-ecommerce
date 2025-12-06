@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="7 Mares Multimarcas - Sua confiança, seu estilo, nossa especialidade. Moletom, bonés, óculos e acessórios premium.">
+    <meta name="keywords" content="moletom, boné, óculos, corrente, acessórios, Hugo Boss, Armani, Lacoste">
+    <title>7 Mares Multimarcas - Premium Fashion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --preto: #000000;
+            --dourado: #d4af37;
+            --branco: #ffffff;
+            --cinza: #1a1a1a;
+            --cinza-claro: #f5f5f5;
+            --vermelho: #e74c3c;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--preto);
+            color: var(--branco);
+            line-height: 1.6;
+        }
+
+        /* ===== LAYOUT PRINCIPAL ===== */
+        header {
+            background-color: var(--preto);
+            border-bottom: 2px solid var(--dourado);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--dourado);
+            letter-spacing: 2px;
+        }
+
+        .logo-icon {
+            margin-right: 0.5rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--branco);
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--dourado);
+        }
+
+        .cart-icon, .user-menu {
+            cursor: pointer;
+            font-size: 1.2rem;
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--vermelho);
+            color: var(--branco);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        /* ===== HERO BANNER ===== */
+        .banner {
+            background: linear-gradient(135deg, var(--preto) 0%, var(--cinza) 100%);
+            border-bottom: 3px solid var(--dourado);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .banner h1 {
+            font-size: 3.5rem;
+            color: var(--dourado);
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        .banner p {
+            font-size: 1.5rem;
+            color: var(--branco);
+            margin-bottom: 2rem;
+        }
+
+        .banner-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border: 2px solid var(--dourado);
+            background-color: transparent;
+            color: var(--dourado);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background-color: var(--dourado);
+            color: var(--preto);
+        }
+
+        .btn-primary {
+            background-color: var(--dourado);
+            color: var(--preto);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--branco);
+        }
+
+        /* ===== SEÇÕES DE PRODUTOS ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--dourado);
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background-color: var(--dourado);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background-color: var(--cinza);
+            border: 1px solid var(--dourado);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            background-color: var(--cinza-claro);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cinza);
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-label {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--vermelho);
+            color: var(--branco);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-brand {
+            font-size: 0.85rem;
+            color: var(--dourado);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+            color: var(--branco);
+        }
+
+        .product-price {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin: 1rem 0;
+        }
+
+        .price-original {
+            color: var(--cinza-claro);
+            text-decoration: line-through;
+            font-size: 0.9rem;
+        }
+
+        .price-current {
+            font-size: 1.5rem;
+            color: var(--dourado);
+            font-weight: bold;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-small {
+            flex: 1;
+            padding: 0.7rem;
+            font-size: 0.9rem;
+            border: 1px solid var(--dourado);
+            background-color: transparent;
+            color: var(--dourado);
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 4px;
+        }
+
+        .btn-small:hover {
+            background-color: var(--dourado);
+            color: var(--preto);
+        }
+
+        /* ===== DEPOIMENTOS ===== */
+        .testimonials {
+            background-color: var(--cinza);
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background-color: var(--preto);
+            padding: 2rem;
+            border-left: 4px solid var(--dourado);
+            border-radius: 4px;
+        }
+
+        .testimonial-stars {
+            color: var(--dourado);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-text {
+            color: var(--cinza-claro);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            color: var(--dourado);
+            font-weight: bold;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: var(--cinza);
+            border-top: 2px solid var(--dourado);
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--dourado);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section a {
+            display: block;
+            color: var(--cinza-claro);
+            text-decoration: none;
+            margin: 0.5rem 0;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--dourado);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid var(--dourado);
+            padding-top: 2rem;
+            color: var(--cinza-claro);
+        }
+
+        .whatsapp-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: var(--branco);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        /* ===== MODAIS ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: var(--cinza);
+            margin: 5% auto;
+            padding: 2rem;
+            border: 2px solid var(--dourado);
+            width: 90%;
+            max-width: 500px;
+            border-radius: 8px;
+            animation: slideIn 0.3s;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-modal {
+            color: var(--dourado);
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--vermelho);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dourado);
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--preto);
+            border: 1px solid var(--dourado);
+            color: var(--branco);
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--branco);
+            box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+        }
+
+        /* ===== PÁGINA DE CATEGORIAS (MOSTRADA DENTRO DO MODAL) ===== */
+        .categories-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-btn {
+            padding: 1rem;
+            background-color: var(--cinza);
+            border: 2px solid var(--dourado);
+            color: var(--dourado);
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background-color: var(--dourado);
+            color: var(--preto);
+        }
+
+        /* ===== CARRINHO LATERAL ===== */
+        .cart-sidebar {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background-color: var(--cinza);
+            border-left: 2px solid var(--dourado);
+            transition: right 0.3s;
+            z-index: 500;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--dourado);
+            padding-bottom: 1rem;
+        }
+
+        .cart-header h2 {
+            color: var(--dourado);
+        }
+
+        .cart-items {
+            margin-bottom: 2rem;
+        }
+
+        .cart-item {
+            background-color: var(--preto);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+            border-left: 3px solid var(--dourado);
+        }
+
+        .cart-item-name {
+            color: var(--branco);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-item-price {
+            color: var(--dourado);
+            font-weight: bold;
+        }
+
+        .cart-item-remove {
+            color: var(--vermelho);
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .cart-summary {
+            background-color: var(--preto);
+            padding: 1.5rem;
+            border: 2px solid var(--dourado);
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            color: var(--dourado);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ===== ADMIN PANEL ===== */
+        .admin-panel {
+            display: none;
+            background-color: var(--preto);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .admin-panel.active {
+            display: block;
+        }
+
+        .admin-header {
+            background-color: var(--cinza);
+            padding: 2rem;
+            border: 2px solid var(--dourado);
+            margin-bottom: 2rem;
+            border-radius: 8px;
+        }
+
+        .admin-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .admin-nav-btn {
+            padding: 1rem;
+            background-color: var(--cinza);
+            border: 2px solid var(--dourado);
+            color: var(--dourado);
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .admin-nav-btn:hover,
+        .admin-nav-btn.active {
+            background-color: var(--dourado);
+            color: var(--preto);
+        }
+
+        .admin-section {
+            display: none;
+            background-color: var(--cinza);
+            padding: 2rem;
+            border: 2px solid var(--dourado);
+            border-radius: 8px;
+        }
+
+        .admin-section.active {
+            display: block;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .table th,
+        .table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--dourado);
+        }
+
+        .table th {
+            background-color: var(--preto);
+            color: var(--dourado);
+            font-weight: bold;
+        }
+
+        .table tr:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+
+        .status-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .status-novo {
+            background-color: rgba(52, 152, 219, 0.2);
+            color: #3498db;
+        }
+
+        .status-pago {
+            background-color: rgba(46, 204, 113, 0.2);
+            color: #2ecc71;
+        }
+
+        .status-enviado {
+            background-color: rgba(241, 196, 15, 0.2);
+            color: #f1c40f;
+        }
+
+        .status-entregue {
+            background-color: rgba(155, 89, 182, 0.2);
+            color: #9b59b6;
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 768px) {
+            header {
+                flex-wrap: wrap;
+            }
+
+            nav {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .banner h1 {
+                font-size: 2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+
+            .admin-nav {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <span class="logo-icon">⚓</span>7 MARES
+        </div>
+        <nav>
+            <a onclick="showHome()">Home</a>
+            <a onclick="showCategories()">Categorias</a>
+            <a onclick="showCart()" class="cart-icon">🛒 <span class="cart-count" id="cart-count">0</span></a>
+            <a onclick="showLogin()" class="user-menu">👤</a>
+            <a onclick="toggleAdminPanel()" style="color: var(--vermelho);">Admin</a>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div id="main-content">
+        <!-- BANNER HERO -->
+        <div class="banner">
+            <h1>7 MARES MULTIMARCAS</h1>
+            <p>🌊 SUA CONFIANÇA, SEU ESTILO, NOSSA ESPECIALIDADE ✨</p>
+            <div class="banner-buttons">
+                <button class="btn btn-primary" onclick="showCategories()">Explorar Loja</button>
+                <button class="btn" onclick="openWhatsApp()">💬 Fale Conosco</button>
+            </div>
+        </div>
+
+        <!-- NOVIDADES -->
+        <div class="container">
+            <h2 class="section-title">✨ NOVIDADES</h2>
+            <div class="products-grid" id="new-products">
+                <p style="text-align: center; color: var(--dourado); grid-column: 1/-1;">Aguardando produtos...</p>
+            </div>
+        </div>
+
+        <!-- MAIS VENDIDOS -->
+        <div class="container">
+            <h2 class="section-title">🔥 MAIS VENDIDOS</h2>
+            <div class="products-grid" id="best-sellers">
+                <p style="text-align: center; color: var(--dourado); grid-column: 1/-1;">Aguardando produtos...</p>
+            </div>
+        </div>
+
+        <!-- PROMOÇÕES -->
+        <div class="container">
+            <h2 class="section-title">💰 PROMOÇÕES IMPERDÍVEIS</h2>
+            <div class="products-grid" id="promotions">
+                <p style="text-align: center; color: var(--dourado); grid-column: 1/-1;">Aguardando produtos...</p>
+            </div>
+        </div>
+
+        <!-- DEPOIMENTOS -->
+        <div class="testimonials">
+            <div class="container">
+                <h2 class="section-title">⭐ O QUE DIZEM SOBRE NÓS</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"Produtos de excelente qualidade! Chegou rápido e bem embalado. Voltaria a comprar com certeza!"</p>
+                        <div class="testimonial-author">— João Silva</div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"As marcas premium que procurava todas no mesmo lugar. Melhor loja de moda urbana!"</p>
+                        <div class="testimonial-author">— Marina Costa</div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"Atendimento no WhatsApp super rápido e eficiente. Recomendo! 🎯"</p>
+                        <div class="testimonial-author">— Pedro Santos</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CATEGORIAS MODAL -->
+    <div id="categories-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('categories-modal')">&times;</span>
+            <h2 style="color: var(--dourado); margin-bottom: 1.5rem;">🏪 CATEGORIAS</h2>
+            <div class="categories-container">
+                <button class="category-btn" onclick="filterByCategory('moletons')">Moletons</button>
+                <button class="category-btn" onclick="filterByCategory('bones')">Bonés</button>
+                <button class="category-btn" onclick="filterByCategory('oculos')">Óculos</button>
+                <button class="category-btn" onclick="filterByCategory('correntes')">Correntes</button>
+                <button class="category-btn" onclick="filterByCategory('camisetas')">Camisetas</button>
+                <button class="category-btn" onclick="filterByCategory('calcas')">Calças</button>
+                <button class="category-btn" onclick="filterByCategory('ofertas')">Ofertas</button>
+                <button class="category-btn" onclick="filterByCategory('todos')">Ver Tudo</button>
+            </div>
+            <input type="text" id="search-input" placeholder="Buscar produto..." style="width: 100%; padding: 0.8rem; margin-top: 1rem; background-color: var(--preto); border: 1px solid var(--dourado); color: var(--branco); border-radius: 4px;">
+            <div class="products-grid" id="categories-grid" style="margin-top: 2rem;">
+                <p style="text-align: center; color: var(--dourado); grid-column: 1/-1;">Carregando categorias...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CARRINHO LATERAL -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>🛒 Seu Carrinho</h2>
+            <span class="close-modal" onclick="toggleCart()">&times;</span>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <p style="color: var(--cinza-claro); text-align: center;">Carrinho vazio</p>
+        </div>
+        <div class="form-group">
+            <label>Cupom de Desconto</label>
+            <input type="text" id="coupon-input" placeholder="Digite o código">
+            <button class="btn btn-small" style="margin-top: 0.5rem;" onclick="applyCoupon()">Aplicar</button>
+        </div>
+        <div class="cart-summary">
+            <div class="cart-total">
+                <span>Subtotal:</span>
+                <span id="subtotal">R$ 0,00</span>
+            </div>
+            <div class="cart-total">
+                <span>Frete:</span>
+                <span id="shipping">R$ 0,00</span>
+            </div>
+            <div class="cart-total" style="font-size: 1.4rem; border-top: 1px solid var(--dourado); padding-top: 1rem;">
+                <span>Total:</span>
+                <span id="total">R$ 0,00</span>
+            </div>
+        </div>
+        <button class="btn btn-primary" style="width: 100%; padding: 1rem;" onclick="goToCheckout()">Ir para Checkout</button>
+    </div>
+
+    <!-- LOGIN MODAL -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('login-modal')">&times;</span>
+            <h2 style="color: var(--dourado); margin-bottom: 1.5rem;">Login / Cadastro</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Entrar</button>
+                <p style="text-align: center; margin-top: 1rem; color: var(--cinza-claro);">Não tem conta? <span style="color: var(--dourado); cursor: pointer;" onclick="toggleRegister()">Cadastre-se</span></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- ADMIN PANEL -->
+    <div class="admin-panel" id="admin-panel">
+        <div class="admin-header">
+            <h1 style="color: var(--dourado); margin-bottom: 1rem;">🎛️ PAINEL ADMINISTRATIVO</h1>
+            <button class="btn" onclick="toggleAdminPanel()" style="margin-right: 1rem;">← Voltar</button>
+            <button class="btn" onclick="logoutAdmin()">Logout</button>
+        </div>
+
+        <div class="admin-nav">
+            <button class="admin-nav-btn active" onclick="switchAdminTab('dashboard')">Dashboard</button>
+            <button class="admin-nav-btn" onclick="switchAdminTab('produtos')">Produtos</button>
+            <button class="admin-nav-btn" onclick="switchAdminTab('pedidos')">Pedidos</button>
+            <button class="admin-nav-btn" onclick="switchAdminTab('cupons')">Cupons</button>
+            <button class="admin-nav-btn" onclick="switchAdminTab('home')">Home Settings</button>
+        </div>
+
+        <!-- DASHBOARD -->
+        <div class="admin-section active" id="dashboard-section">
+            <h2 style="color: var(--dourado); margin-bottom: 1.5rem;">📊 Dashboard</h2>
+            <div class="products-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                <div style="background-color: var(--preto); padding: 2rem; border: 2px solid var(--dourado); border-radius: 8px; text-align: center;">
+                    <div style="font-size: 2.5rem; color: var(--dourado); font-weight: bold;" id="total-revenue">R$ 0,00</div>
+                    <div style="color: var(--cinza-claro);">Faturamento Total</div>
+                </div>
+                <div style="background-color: var(--preto); padding: 2rem; border: 2px solid var(--dourado); border-radius: 8px; text-align: center;">
+                    <div style="font-size: 2.5rem; color: var(--dourado); font-weight: bold;" id="total-orders">0</div>
+                    <div style="color: var(--cinza-claro);">Total de Pedidos</div>
+                </div>
+                <div style="background-color: var(--preto); padding: 2rem; border: 2px solid var(--dourado); border-radius: 8px; text-align: center;">
+                    <div style="font-size: 2.5rem; color: var(--dourado); font-weight: bold;" id="avg-ticket">R$ 0,00</div>
+                    <div style="color: var(--cinza-claro);">Ticket Médio</div>
+                </div>
+                <div style="background-color: var(--preto); padding: 2rem; border: 2px solid var(--dourado); border-radius: 8px; text-align: center;">
+                    <div style="font-size: 2.5rem; color: var(--dourado); font-weight: bold;" id="total-products">0</div>
+                    <div style="color: var(--cinza-claro);">Produtos Cadastrados</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GERENCIAR PRODUTOS -->
+        <div class="admin-section" id="produtos-section">
+            <h2 style="color: var(--dourado); margin-bottom: 1.5rem;">📦 Gerenciar Produtos</h2>
+            <button class="btn btn-primary" onclick="openAddProductModal()" style="margin-bottom: 1rem;">+ Novo Produto</button>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Categoria</th>
+                        <th>Preço</th>
+                        <th>Estoque</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="products-table-body">
+                    <tr>
+                        <td colspan="5" style="text-align: center; color: var(--dourado);">Nenhum produto cadastrado ainda</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- GERENCIAR PEDIDOS -->
+        <div class="admin-section" id="pedidos-section">
+            <h2 style="color: var(--dourado); margin-bottom: 1.5rem;">📋 Gerenciar Pedidos</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID Pedido</th>
+                        <th>Cliente</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th>Data</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="orders-table-body">
+                    <tr>
+                        <td colspan="6" style="text-align: center; color: var(--dourado);">Nenhum pedido cadastrado</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- GERENCIAR CUPONS -->
+        <div class="admin-section" id="cupons-section">
+            <h2 style="color: var(--dourado); margin-bottom: 1.5rem;">🎟️ Cupons de Desconto</h2>
+            <button class="btn btn-primary" onclick="openAddCouponModal()" style="margin-bottom: 1rem;">+ Novo Cupom</button>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Desconto</th>
+                        <th>Uso</th>
+                        <th>Ativo</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="coupons-table-body">
+                    <tr>
+                        <td colspan="5" style="text-align: center; color: var(--dourado);">Nenhum cupom cadastrado</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- HOME SETTINGS -->
+        <div class="admin-section" id="home-section">
+            <h2 style="color: var(--dourado); margin-bottom: 1.5rem;">🏠 Configurações da Home</h2>
+            <form id="home-settings-form">
+                <div class="form-group">
+                    <label>Título Principal</label>
+                    <input type="text" id="banner-title" value="7 MARES MULTIMARCAS">
+                </div>
+                <div class="form-group">
+                    <label>Subtítulo</label>
+                    <input type="text" id="banner-subtitle" value="🌊 SUA CONFIANÇA, SEU ESTILO, NOSSA ESPECIALIDADE ✨">
+                </div>
+                <div class="form-group">
+                    <label>URL da Imagem de Banner</label>
+                    <input type="text" id="banner-image" placeholder="https://...">
+                </div>
+                <button type="submit" class="btn btn-primary">💾 Salvar Alterações</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAIS DE ADMIN -->
+    <div id="add-product-modal" class="modal">
+        <div class="modal-content" style="max-width: 700px; max-height: 90vh; overflow-y: auto;">
+            <span class="close-modal" onclick="closeModal('add-product-modal')">&times;</span>
+            <h2 style="color: var(--dourado); margin-bottom: 1.5rem;">➕ Novo Produto</h2>
+            <form id="add-product-form">
+                <div class="form-group">
+                    <label>Nome do Produto</label>
+                    <input type="text" id="product-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Descrição</label>
+                    <textarea id="product-description" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Marca</label>
+                    <select id="product-brand">
+                        <option value="">Selecionar</option>
+                        <option value="Hugo Boss">Hugo Boss</option>
+                        <option value="Lacoste">Lacoste</option>
+                        <option value="Armani">Armani</option>
+                        <option value="Oakley">Oakley</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Categoria</label>
+                    <select id="product-category" required>
+                        <option value="">Selecionar</option>
+                        <option value="moletons">Moletons</option>
+                        <option value="bones">Bonés</option>
+                        <option value="oculos">Óculos</option>
+                        <option value="correntes">Correntes</option>
+                        <option value="camisetas">Camisetas</option>
+                        <option value="calcas">Calças</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Preço</label>
+                    <input type="number" id="product-price" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label>Preço Promocional (opcional)</label>
+                    <input type="number" id="product-promo-price" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label>URL da Imagem</label>
+                    <input type="text" id="product-image-url">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Salvar Produto</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="add-coupon-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('add-coupon-modal')">&times;</span>
+            <h2 style="color: var(--dourado); margin-bottom: 1.5rem;">🎟️ Novo Cupom</h2>
+            <form id="add-coupon-form">
+                <div class="form-group">
+                    <label>Código</label>
+                    <input type="text" id="coupon-code" required>
+                </div>
+                <div class="form-group">
+                    <label>Tipo de Desconto</label>
+                    <select id="coupon-type">
+                        <option value="percentage">Percentual (%)</option>
+                        <option value="fixed">Fixo (R$)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Valor</label>
+                    <input type="number" id="coupon-value" step="0.01" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Criar Cupom</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- WHATSAPP BUTTON -->
+    <div class="whatsapp-button" onclick="openWhatsApp()">💬</div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // ===== ESTADO GLOBAL =====
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+        let adminLoggedIn = JSON.parse(localStorage.getItem('adminLoggedIn')) || false;
+        let products = JSON.parse(localStorage.getItem('products')) || [];
+        let orders = JSON.parse(localStorage.getItem('orders')) || [];
+        let coupons = JSON.parse(localStorage.getItem('coupons')) || [];
+
+        // ===== FUNÇÕES DE NAVEGAÇÃO =====
+        function showHome() {
+            document.getElementById('main-content').style.display = 'block';
+            document.getElementById('admin-panel').classList.remove('active');
+            closeModal('categories-modal');
+            renderHome();
+        }
+
+        function showCategories() {
+            openModal('categories-modal');
+            renderCategories();
+        }
+
+        function showCart() {
+            toggleCart();
+        }
+
+        function toggleCart() {
+            document.getElementById('cart-sidebar').classList.toggle('open');
+            renderCartSidebar();
+        }
+
+        function toggleAdminPanel() {
+            if (!adminLoggedIn) {
+                const password = prompt('Senha do Admin:');
+                if (password === '7mares2024') {
+                    adminLoggedIn = true;
+                    localStorage.setItem('adminLoggedIn', JSON.stringify(adminLoggedIn));
+                    document.getElementById('admin-panel').classList.add('active');
+                    document.getElementById('main-content').style.display = 'none';
+                    renderDashboard();
+                } else {
+                    alert('Senha incorreta!');
+                }
+            } else {
+                document.getElementById('admin-panel').classList.remove('active');
+                document.getElementById('main-content').style.display = 'block';
+                showHome();
+            }
+        }
+
+        function logoutAdmin() {
+            adminLoggedIn = false;
+            localStorage.setItem('adminLoggedIn', JSON.stringify(adminLoggedIn));
+            toggleAdminPanel();
+        }
+
+        // ===== MODAIS =====
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // ===== PRODUTOS =====
+        function renderHome() {
+            const newProducts = products.slice(0, 3);
+            const bestSellers = products.slice(0, 3);
+            const promotions = products.filter(p => p.promotional_price).slice(0, 3);
+
+            document.getElementById('new-products').innerHTML = renderProductsGrid(newProducts);
+            document.getElementById('best-sellers').innerHTML = renderProductsGrid(bestSellers);
+            document.getElementById('promotions').innerHTML = renderProductsGrid(promotions);
+
+            if (products.length === 0) {
+                document.getElementById('new-products').innerHTML = '<p style="text-align: center; color: var(--dourado); grid-column: 1/-1;">Aguardando produtos...</p>';
+                document.getElementById('best-sellers').innerHTML = '<p style="text-align: center; color: var(--dourado); grid-column: 1/-1;">Aguardando produtos...</p>';
+                document.getElementById('promotions').innerHTML = '<p style="text-align: center; color: var(--dourado); grid-column: 1/-1;">Aguardando produtos...</p>';
+            }
+        }
+
+        function renderProductsGrid(productList) {
+            return productList.map(product => `
+                <div class="product-card" onclick="viewProduct('${product.id}')">
+                    <div class="product-image">
+                        ${product.image_url ? `<img src="${product.image_url}" alt="${product.name}">` : '📦'}
+                        ${product.promotional_price ? '<div class="product-label">PROMOÇÃO</div>' : ''}
+                    </div>
+                    <div class="product-info">
+                        <div class="product-brand">${product.brand || 'Sem marca'}</div>
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-price">
+                            ${product.promotional_price ? `<span class="price-original">R$ ${product.base_price.toFixed(2)}</span>` : ''}
+                            <span class="price-current">R$ ${(product.promotional_price || product.base_price).toFixed(2)}</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-small" onclick="addToCart(event, '${product.id}')">🛒 Adicionar</button>
+                            <button class="btn-small" onclick="addToWishlist(event, '${product.id}')">❤️</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderCategories() {
+            const categories = ['moletons', 'bones', 'oculos', 'correntes', 'camisetas', 'calcas'];
+            const allProducts = products;
+            document.getElementById('categories-grid').innerHTML = renderProductsGrid(allProducts);
+        }
+
+        function filterByCategory(category) {
+            const filtered = category === 'todos' ? products : products.filter(p => p.category === category);
+            document.getElementById('categories-grid').innerHTML = renderProductsGrid(filtered);
+        }
+
+        function viewProduct(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            alert(`Produto: ${product.name}\nPreço: R$ ${product.base_price}\nDescrição: ${product.description}`);
+        }
+
+        function addToCart(event, productId) {
+            event.stopPropagation();
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            alert(`${product.name} adicionado ao carrinho!`);
+        }
+
+        function addToWishlist(event, productId) {
+            event.stopPropagation();
+            alert('Produto adicionado à lista de desejos!');
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCartSidebar();
+        }
+
+        function updateCartCount() {
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').textContent = count;
+        }
+
+        function renderCartSidebar() {
+            const cartItemsDiv = document.getElementById('cart-items');
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = '<p style="color: var(--cinza-claro); text-align: center;">Carrinho vazio</p>';
+                document.getElementById('subtotal').textContent = 'R$ 0,00';
+                document.getElementById('shipping').textContent = 'R$ 0,00';
+                document.getElementById('total').textContent = 'R$ 0,00';
+                return;
+            }
+
+            cartItemsDiv.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-price">R$ ${(item.promotional_price || item.base_price).toFixed(2)} x ${item.quantity}</div>
+                    <div class="cart-item-remove" onclick="removeFromCart('${item.id}')">❌ Remover</div>
+                </div>
+            `).join('');
+
+            const subtotal = cart.reduce((sum, item) => sum + ((item.promotional_price || item.base_price) * item.quantity), 0);
+            const shipping = subtotal > 100 ? 0 : 15;
+            const total = subtotal + shipping;
+
+            document.getElementById('subtotal').textContent = `R$ ${subtotal.toFixed(2)}`;
+            document.getElementById('shipping').textContent = `R$ ${shipping.toFixed(2)}`;
+            document.getElementById('total').textContent = `R$ ${total.toFixed(2)}`;
+        }
+
+        function applyCoupon() {
+            const code = document.getElementById('coupon-input').value;
+            const coupon = coupons.find(c => c.code === code && c.is_active);
+            if (coupon) {
+                alert(`Cupom ${code} aplicado! Desconto: ${coupon.discount_value}${coupon.discount_type === 'percentage' ? '%' : 'R$'}`);
+            } else {
+                alert('Cupom inválido ou expirado!');
+            }
+        }
+
+        function goToCheckout() {
+            if (cart.length === 0) {
+                alert('Seu carrinho está vazio!');
+                return;
+            }
+            alert('Redirecionando para checkout...\n(Em produção, integrar com pagamento Pix/Cartão/Boleto)');
+        }
+
+        // ===== ADMIN FUNCTIONS =====
+        function switchAdminTab(tab) {
+            document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.admin-nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tab + '-section').classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function renderDashboard() {
+            const totalRevenue = orders.reduce((sum, order) => sum + order.total, 0);
+            const totalOrders = orders.length;
+            const avgTicket = totalOrders > 0 ? totalRevenue / totalOrders : 0;
+            const totalProducts = products.length;
+
+            document.getElementById('total-revenue').textContent = `R$ ${totalRevenue.toFixed(2)}`;
+            document.getElementById('total-orders').textContent = totalOrders;
+            document.getElementById('avg-ticket').textContent = `R$ ${avgTicket.toFixed(2)}`;
+            document.getElementById('total-products').textContent = totalProducts;
+        }
+
+        function openAddProductModal() {
+            openModal('add-product-modal');
+        }
+
+        function openAddCouponModal() {
+            openModal('add-coupon-modal');
+        }
+
+        document.getElementById('add-product-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const newProduct = {
+                id: Date.now().toString(),
+                name: document.getElementById('product-name').value,
+                description: document.getElementById('product-description').value,
+                brand: document.getElementById('product-brand').value,
+                category: document.getElementById('product-category').value,
+                base_price: parseFloat(document.getElementById('product-price').value),
+                promotional_price: document.getElementById('product-promo-price').value ? parseFloat(document.getElementById('product-promo-price').value) : null,
+                image_url: document.getElementById('product-image-url').value,
+                created_at: new Date()
+            };
+
+            products.push(newProduct);
+            localStorage.setItem('products', JSON.stringify(products));
+            alert('Produto criado com sucesso!');
+            closeModal('add-product-modal');
+            document.getElementById('add-product-form').reset();
+            renderDashboard();
+        });
+
+        document.getElementById('add-coupon-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const newCoupon = {
+                id: Date.now().toString(),
+                code: document.getElementById('coupon-code').value,
+                discount_type: document.getElementById('coupon-type').value,
+                discount_value: parseFloat(document.getElementById('coupon-value').value),
+                is_active: true
+            };
+
+            coupons.push(newCoupon);
+            localStorage.setItem('coupons', JSON.stringify(coupons));
+            alert('Cupom criado com sucesso!');
+            closeModal('add-coupon-modal');
+            document.getElementById('add-coupon-form').reset();
+        });
+
+        // ===== LOGIN =====
+        function showLogin() {
+            openModal('login-modal');
+        }
+
+        // ===== WHATSAPP =====
+        function openWhatsApp() {
+            const whatsappNumber = '558599999999'; // Alterar com número real
+            const message = encodeURIComponent('Olá 7 Mares! Gostaria de informações sobre seus produtos. 😊');
+            window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+        }
+
+        // ===== FECHAR MODAL COM CLIQUE FORA =====
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        };
+
+        // ===== INICIALIZAÇÃO =====
+        updateCartCount();
+        renderHome();
+    </script>
+</body>
+</html>
