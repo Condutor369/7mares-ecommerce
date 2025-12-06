@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="7 Mares Multimarcas - Sua confiança, seu estilo, nossa especialidade. Moletom, bonés, óculos e acessórios premium.">
+    <meta name="keywords" content="moletom, boné, óculos, corrente, acessórios, Hugo Boss, Lacoste, Armani">
+    <title>7 Mares Multimarcas - Premium Fashion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --preto: #000000;
+            --dourado: #d4af37;
+            --branco: #ffffff;
+            --cinza: #1a1a1a;
+            --cinza-claro: #f5f5f5;
+            --vermelho: #e74c3c;
+            --verde: #2ecc71;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--preto);
+            color: var(--branco);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--preto);
+            border-bottom: 2px solid var(--dourado);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--dourado);
+            letter-spacing: 2px;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a, nav button {
+            color: var(--branco);
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.3s;
+            background: none;
+            border: none;
+            font-size: 1rem;
+        }
+
+        nav a:hover, nav button:hover {
+            color: var(--dourado);
+        }
+
+        .cart-icon, .user-menu {
+            font-size: 1.2rem;
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--vermelho);
+            color: var(--branco);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .banner {
+            background: linear-gradient(135deg, var(--preto) 0%, var(--cinza) 100%);
+            border-bottom: 3px solid var(--dourado);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .banner h1 {
+            font-size: 3.5rem;
+            color: var(--dourado);
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        .banner p {
+            font-size: 1.5rem;
+            color: var(--branco);
+            margin-bottom: 2rem;
+        }
+
+        .banner-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border: 2px solid var(--dourado);
+            background-color: transparent;
+            color: var(--dourado);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border-radius: 4px;
+        }
+
+        .btn:hover {
+            background-color: var(--dourado);
+            color: var(--preto);
+        }
+
+        .btn-primary {
+            background-color: var(--dourado);
+            color: var(--preto);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--branco);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--dourado);
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background-color: var(--dourado);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background-color: var(--cinza);
+            border: 1px solid var(--dourado);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            background-color: var(--cinza-claro);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cinza);
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-label {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--vermelho);
+            color: var(--branco);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-brand {
+            font-size: 0.85rem;
+            color: var(--dourado);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+            color: var(--branco);
+        }
+
+        .product-price {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin: 1rem 0;
+        }
+
+        .price-original {
+            color: var(--cinza-claro);
+            text-decoration: line-through;
+            font-size: 0.9rem;
+        }
+
+        .price-current {
+            font-size: 1.5rem;
+            color: var(--dourado);
+            font-weight: bold;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-small {
+            flex: 1;
+            padding: 0.7rem;
+            font-size: 0.9rem;
+            border: 1px solid var(--dourado);
+            background-color: transparent;
+            color: var(--dourado);
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 4px;
+        }
+
+        .btn-small:hover {
+            background-color: var(--dourado);
+            color: var(--preto);
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background-color: var(--cinza);
+            border-left: 2px solid var(--dourado);
+            transition: right 0.3s;
+            z-index: 500;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--dourado);
+            padding-bottom: 1rem;
+        }
+
+        .cart-header h2 {
+            color: var(--dourado);
+        }
+
+        .cart-item {
+            background-color: var(--preto);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+            border-left: 3px solid var(--dourado);
+        }
+
+        .cart-item-name {
+            color: var(--branco);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-item-price {
+            color: var(--dourado);
+            font-weight: bold;
+        }
+
+        .cart-summary {
+            background-color: var(--preto);
+            padding: 1.5rem;
+            border: 2px solid var(--dourado);
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            color: var(--dourado);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: var(--cinza);
+            margin: 5% auto;
+            padding: 2rem;
+            border: 2px solid var(--dourado);
+            width: 90%;
+            max-width: 600px;
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dourado);
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--preto);
+            border: 1px solid var(--dourado);
+            color: var(--branco);
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .close-modal {
+            color: var(--dourado);
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--vermelho);
+        }
+
+        .admin-panel {
+            display: none;
+        }
+
+        .admin-panel.active {
+            display: block;
+        }
+
+        .admin-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .admin-nav-btn {
+            padding: 1rem;
+            background-color: var(--cinza);
+            border: 2px solid var(--dourado);
+            color: var(--dourado);
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .admin-nav-btn:hover,
+        .admin-nav-btn.active {
+            background-color: var(--dourado);
+            color: var(--preto);
+        }
+
+        .admin-section {
+            display: none;
+            background-color: var(--cinza);
+            padding: 2rem;
+            border: 2px solid var(--dourado);
+            border-radius: 8px;
+        }
+
+        .admin-section.active {
+            display: block;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .table th,
+        .table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--dourado);
+        }
+
+        .table th {
+            background-color: var(--preto);
+            color: var(--dourado);
+            font-weight: bold;
+        }
+
+        .whatsapp-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: var(--branco);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .checkout-form {
+            background-color: var(--cinza);
+            border: 2px solid var(--dourado);
+            border-radius: 8px;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .checkout-form h2 {
+            color: var(--dourado);
+            margin-bottom: 1.5rem;
+        }
+
+        .qr-code {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .qr-code img {
+            max-width: 200px;
+            border: 3px solid var(--dourado);
+            border-radius: 8px;
+            padding: 1rem;
+            background-color: var(--branco);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .status-novo { background-color: rgba(52, 152, 219, 0.2); color: #3498db; }
+        .status-pago { background-color: rgba(46, 204, 113, 0.2); color: var(--verde); }
+        .status-enviado { background-color: rgba(241, 196, 15, 0.2); color: #f1c40f; }
+        .status-entregue { background-color: rgba(155, 89, 182, 0.2); color: #9b59b6; }
+
+        @media (max-width: 768px) {
+            .banner h1 { font-size: 2rem; }
+            .products-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
+            .cart-sidebar { width: 100%; right: -100%; }
+            .admin-nav { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="logo">🌊 7 MARES</div>
+        <nav>
+            <button onclick="showPage('home')">Home</button>
+            <button onclick="showPage('loja')">Loja</button>
+            <button onclick="toggleCart()" class="cart-icon">🛒 <span class="cart-count" id="cart-count">0</span></button>
+            <button onclick="showPage('login')" class="user-menu">👤</button>
+            <button onclick="toggleAdmin()" style="color: var(--vermelho);">Admin</button>
+        </nav>
+    </header>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+        <div class="banner">
+            <h1>7 MARES MULTIMARCAS</h1>
+            <p>🌊 SUA CONFIANÇA, SEU ESTILO, NOSSA ESPECIALIDADE ✨</p>
+            <div class="banner-buttons">
+                <button class="btn btn-primary" onclick="showPage('loja')">Explorar Loja</button>
+                <button class="btn" onclick="openWhatsApp()">📱 WhatsApp</button>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2 class="section-title">✨ NOVIDADES</h2>
+            <div class="products-grid" id="new-products"></div>
+
+            <h2 class="section-title">🔥 MAIS VENDIDOS</h2>
+            <div class="products-grid" id="best-sellers"></div>
+
+            <h2 class="section-title">💰 PROMOÇÕES</h2>
+            <div class="products-grid" id="promotions"></div>
+        </div>
+    </div>
+
+    <!-- LOJA PAGE -->
+    <div id="loja" class="page">
+        <div class="container">
+            <h1 class="section-title">🛍️ CATÁLOGO COMPLETO</h1>
+            <div class="products-grid" id="all-products"></div>
+        </div>
+    </div>
+
+    <!-- LOGIN PAGE -->
+    <div id="login" class="page">
+        <div class="container">
+            <div class="modal-content" style="margin: 5rem auto;">
+                <h2 style="color: var(--dourado); margin-bottom: 1.5rem;">Login / Cadastro</h2>
+                <form id="login-form" onsubmit="submitLogin(event)">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Entrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHECKOUT PAGE -->
+    <div id="checkout" class="page">
+        <div class="container">
+            <div class="checkout-form">
+                <h2>💳 CHECKOUT</h2>
+                <form id="checkout-form" onsubmit="submitCheckout(event)">
+                    <div class="form-group">
+                        <label>Nome Completo</label>
+                        <input type="text" id="checkout-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="checkout-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefone</label>
+                        <input type="tel" id="checkout-phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Endereço</label>
+                        <input type="text" id="checkout-address" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Método de Pagamento</label>
+                        <select id="payment-method" required>
+                            <option value="">Selecionar</option>
+                            <option value="pix">PIX (Instantâneo)</option>
+                            <option value="cartao">Cartão de Crédito</option>
+                            <option value="boleto">Boleto</option>
+                        </select>
+                    </div>
+
+                    <div class="cart-summary">
+                        <div class="cart-total">
+                            <span>Subtotal:</span>
+                            <span id="checkout-subtotal">R$ 0,00</span>
+                        </div>
+                        <div class="cart-total">
+                            <span>Frete:</span>
+                            <span id="checkout-shipping">R$ 15,00</span>
+                        </div>
+                        <div class="cart-total" style="font-size: 1.4rem; border-top: 1px solid var(--dourado); padding-top: 1rem;">
+                            <span>Total:</span>
+                            <span id="checkout-total">R$ 0,00</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;">Finalizar Pedido</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- PEDIDO CONFIRMADO -->
+    <div id="order-confirmed" class="page">
+        <div class="container">
+            <div class="modal-content" style="margin: 5rem auto; text-align: center;">
+                <h1 style="color: var(--verde); margin-bottom: 1rem; font-size: 2rem;">✅ PEDIDO CONFIRMADO!</h1>
+                <p style="color: var(--dourado); font-size: 1.2rem; margin-bottom: 2rem;">Seu pedido foi recebido com sucesso!</p>
+                <div id="order-details" style="background-color: var(--preto); padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                </div>
+                <button class="btn btn-primary" onclick="showPage('home')">Voltar ao Home</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- RASTREAMENTO -->
+    <div id="tracking" class="page">
+        <div class="container">
+            <h1 class="section-title">📦 Rastreamento de Pedido</h1>
+            <div class="modal-content" style="margin: 2rem auto;">
+                <div class="form-group">
+                    <label>Número do Pedido</label>
+                    <input type="text" id="tracking-number" placeholder="#12345">
+                </div>
+                <button class="btn btn-primary" onclick="trackOrder()" style="width: 100%;">Rastrear</button>
+                <div id="tracking-result" style="margin-top: 2rem;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CARRINHO LATERAL -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>🛒 Seu Carrinho</h2>
+            <span class="close-modal" onclick="toggleCart()">&times;</span>
+        </div>
+        <div id="cart-items">
+            <p style="color: var(--cinza-claro); text-align: center;">Carrinho vazio</p>
+        </div>
+        <div class="cart-summary">
+            <div class="cart-total">
+                <span>Subtotal:</span>
+                <span id="sidebar-subtotal">R$ 0,00</span>
+            </div>
+            <div class="cart-total">
+                <span>Frete:</span>
+                <span id="sidebar-shipping">R$ 15,00</span>
+            </div>
+            <div class="cart-total" style="font-size: 1.4rem; border-top: 1px solid var(--dourado); padding-top: 1rem;">
+                <span>Total:</span>
+                <span id="sidebar-total">R$ 0,00</span>
+            </div>
+        </div>
+        <button class="btn btn-primary" style="width: 100%; padding: 1rem; margin-top: 1rem;" onclick="goToCheckout()">Ir para Checkout</button>
+    </div>
+
+    <!-- ADMIN PANEL -->
+    <div class="admin-panel" id="admin-panel">
+        <div class="container">
+            <div style="background-color: var(--cinza); padding: 2rem; border: 2px solid var(--dourado); margin-bottom: 2rem; border-radius: 8px;">
+                <h1 style="color: var(--dourado); margin-bottom: 1rem;">🖥️ PAINEL ADMINISTRATIVO</h1>
+                <button class="btn" onclick="toggleAdmin()" style="margin-right: 1rem;">← Voltar</button>
+                <button class="btn" onclick="logoutAdmin()">Logout</button>
+            </div>
+
+            <div class="admin-nav">
+                <button class="admin-nav-btn active" onclick="switchAdminTab('dashboard')">Dashboard</button>
+                <button class="admin-nav-btn" onclick="switchAdminTab('produtos')">Produtos</button>
+                <button class="admin-nav-btn" onclick="switchAdminTab('pedidos')">Pedidos</button>
+                <button class="admin-nav-btn" onclick="switchAdminTab('cupons')">Cupons</button>
+            </div>
+
+            <div class="admin-section active" id="dashboard-section">
+                <h2 style="color: var(--dourado); margin-bottom: 1.5rem;">📊 Dashboard</h2>
+                <div class="products-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                    <div style="background-color: var(--preto); padding: 2rem; border: 2px solid var(--dourado); border-radius: 8px; text-align: center;">
+                        <div style="font-size: 2.5rem; color: var(--dourado); font-weight: bold;" id="total-revenue">R$ 0,00</div>
+                        <div style="color: var(--cinza-claro);">Faturamento Total</div>
+                    </div>
+                    <div style="background-color: var(--preto); padding: 2rem; border: 2px solid var(--dourado); border-radius: 8px; text-align: center;">
+                        <div style="font-size: 2.5rem; color: var(--dourado); font-weight: bold;" id="total-orders">0</div>
+                        <div style="color: var(--cinza-claro);">Total de Pedidos</div>
+                    </div>
+                    <div style="background-color: var(--preto); padding: 2rem; border: 2px solid var(--dourado); border-radius: 8px; text-align: center;">
+                        <div style="font-size: 2.5rem; color: var(--dourado); font-weight: bold;" id="total-products">0</div>
+                        <div style="color: var(--cinza-claro);">Produtos Cadastrados</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-section" id="produtos-section">
+                <h2 style="color: var(--dourado); margin-bottom: 1.5rem;">📦 Produtos</h2>
+                <p style="color: var(--dourado); margin-bottom: 1rem;" id="products-count">0 produtos cadastrados</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Preço</th>
+                            <th>Categoria</th>
+                            <th>Estoque</th>
+                        </tr>
+                    </thead>
+                    <tbody id="products-table">
+                        <tr><td colspan="4" style="text-align: center; color: var(--dourado);">Carregando produtos...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="admin-section" id="pedidos-section">
+                <h2 style="color: var(--dourado); margin-bottom: 1.5rem;">📋 Pedidos</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Cliente</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-table">
+                        <tr><td colspan="5" style="text-align: center; color: var(--dourado);">Nenhum pedido</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="admin-section" id="cupons-section">
+                <h2 style="color: var(--dourado); margin-bottom: 1.5rem;">🎫 Cupons</h2>
+                <div class="form-group">
+                    <label>Código do Cupom</label>
+                    <input type="text" id="coupon-code">
+                </div>
+                <div class="form-group">
+                    <label>Desconto (%)</label>
+                    <input type="number" id="coupon-discount" min="0" max="100">
+                </div>
+                <button class="btn btn-primary" onclick="addCoupon()" style="width: 100%;">Criar Cupom</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- WHATSAPP BUTTON -->
+    <div class="whatsapp-button" onclick="openWhatsApp()">💬</div>
+
+    <script>
+        // ===== ESTADO GLOBAL =====
+        let cart = JSON.parse(localStorage.getItem('7mares-cart')) || [];
+        let products = JSON.parse(localStorage.getItem('7mares-products')) || [];
+        let orders = JSON.parse(localStorage.getItem('7mares-orders')) || [];
+        let coupons = JSON.parse(localStorage.getItem('7mares-coupons')) || [];
+        let currentUser = JSON.parse(localStorage.getItem('7mares-user')) || null;
+        let adminLoggedIn = JSON.parse(localStorage.getItem('7mares-admin')) || false;
+
+        // ===== NAVEGAÇÃO =====
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            
+            if (pageId === 'loja') renderLoja();
+            if (pageId === 'home') renderHome();
+        }
+
+        function toggleCart() {
+            document.getElementById('cart-sidebar').classList.toggle('open');
+            renderCartSidebar();
+        }
+
+        function toggleAdmin() {
+            if (!adminLoggedIn) {
+                const password = prompt('Senha do Admin:');
+                if (password === '7mares2024') {
+                    adminLoggedIn = true;
+                    localStorage.setItem('7mares-admin', JSON.stringify(adminLoggedIn));
+                    document.getElementById('admin-panel').classList.add('active');
+                    document.getElementById('home').classList.remove('active');
+                    renderDashboard();
+                    renderAdminProducts();
+                } else {
+                    alert('Senha incorreta!');
+                }
+            } else {
+                adminLoggedIn = false;
+                localStorage.setItem('7mares-admin', JSON.stringify(adminLoggedIn));
+                document.getElementById('admin-panel').classList.remove('active');
+                showPage('home');
+            }
+        }
+
+        // ===== RENDERIZAR PRODUTOS =====
+        function renderHome() {
+            const newProducts = products.slice(0, 3);
+            const bestSellers = products.slice(0, 3);
+            const promotions = products.filter(p => p.promoPrice).slice(0, 3);
+
+            document.getElementById('new-products').innerHTML = renderProductsGrid(newProducts);
+            document.getElementById('best-sellers').innerHTML = renderProductsGrid(bestSellers);
+            document.getElementById('promotions').innerHTML = renderProductsGrid(promotions);
+        }
+
+        function renderLoja() {
+            document.getElementById('all-products').innerHTML = renderProductsGrid(products);
+        }
+
+        function renderProductsGrid(productList) {
+            if (!productList || productList.length === 0) {
+                return '<p style="text-align: center; color: var(--dourado); grid-column: 1/-1;">Aguardando produtos...</p>';
+            }
+
+            return productList.map(product => `
+                <div class="product-card" onclick="addToCart('${product.id}')">
+                    <div class="product-image">
+                        ${product.images && product.images.length > 0 ? `<img src="${product.images[0].data}" alt="${product.name}">` : '📦'}
+                        ${product.promoPrice ? '<div class="product-label">PROMOÇÃO</div>' : ''}
+                    </div>
+                    <div class="product-info">
+                        <div class="product-brand">${product.brand || 'Sem marca'}</div>
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-price">
+                            ${product.promoPrice ? `<span class="price-original">R$ ${product.price.toFixed(2)}</span>` : ''}
+                            <span class="price-current">R$ ${(product.promoPrice || product.price).toFixed(2)}</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-small" onclick="event.stopPropagation(); addToCart('${product.id}')">🛒 Adicionar</button>
+                            <button class="btn-small" onclick="event.stopPropagation();">❤️</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ===== CARRINHO =====
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            localStorage.setItem('7mares-cart', JSON.stringify(cart));
+            updateCartCount();
+            renderCartSidebar();
+            alert(`${product.name} adicionado ao carrinho!`);
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            localStorage.setItem('7mares-cart', JSON.stringify(cart));
+            renderCartSidebar();
+        }
+
+        function updateCartCount() {
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').textContent = count;
+        }
+
+        function renderCartSidebar() {
+            const cartItemsDiv = document.getElementById('cart-items');
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = '<p style="color: var(--cinza-claro); text-align: center;">Carrinho vazio</p>';
+                document.getElementById('sidebar-subtotal').textContent = 'R$ 0,00';
+                document.getElementById('sidebar-total').textContent = 'R$ 0,00';
+                return;
+            }
+
+            cartItemsDiv.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-price">R$ ${(item.promoPrice || item.price).toFixed(2)} x ${item.quantity}</div>
+                    <small style="color: var(--dourado); cursor: pointer;" onclick="removeFromCart('${item.id}')">❌ Remover</small>
+                </div>
+            `).join('');
+
+            const subtotal = cart.reduce((sum, item) => sum + ((item.promoPrice || item.price) * item.quantity), 0);
+            const shipping = subtotal > 100 ? 0 : 15;
+            const total = subtotal + shipping;
+
+            document.getElementById('sidebar-subtotal').textContent = `R$ ${subtotal.toFixed(2)}`;
+            document.getElementById('sidebar-shipping').textContent = `R$ ${shipping.toFixed(2)}`;
+            document.getElementById('sidebar-total').textContent = `R$ ${total.toFixed(2)}`;
+        }
+
+        function goToCheckout() {
+            if (cart.length === 0) {
+                alert('Seu carrinho está vazio!');
+                return;
+            }
+
+            const subtotal = cart.reduce((sum, item) => sum + ((item.promoPrice || item.price) * item.quantity), 0);
+            const shipping = subtotal > 100 ? 0 : 15;
+            const total = subtotal + shipping;
+
+            document.getElementById('checkout-subtotal').textContent = `R$ ${subtotal.toFixed(2)}`;
+            document.getElementById('checkout-shipping').textContent = `R$ ${shipping.toFixed(2)}`;
+            document.getElementById('checkout-total').textContent = `R$ ${total.toFixed(2)}`;
+
+            showPage('checkout');
+            toggleCart();
+        }
+
+        // ===== CHECKOUT E PAGAMENTO =====
+        function submitCheckout(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('checkout-name').value;
+            const email = document.getElementById('checkout-email').value;
+            const phone = document.getElementById('checkout-phone').value;
+            const address = document.getElementById('checkout-address').value;
+            const paymentMethod = document.getElementById('payment-method').value;
+
+            if (!name || !email || !phone || !address || !paymentMethod) {
+                alert('Preencha todos os campos!');
+                return;
+            }
+
+            const subtotal = cart.reduce((sum, item) => sum + ((item.promoPrice || item.price) * item.quantity), 0);
+            const shipping = subtotal > 100 ? 0 : 15;
+            const total = subtotal + shipping;
+
+            const order = {
+                id: '#' + Date.now(),
+                customer: name,
+                email: email,
+                phone: phone,
+                address: address,
+                items: cart,
+                subtotal: subtotal,
+                shipping: shipping,
+                total: total,
+                paymentMethod: paymentMethod,
+                status: 'novo',
+                date: new Date().toLocaleString('pt-BR'),
+                trackingCode: 'BR' + Math.random().toString(36).substr(2, 9).toUpperCase() + 'BR'
+            };
+
+            orders.push(order);
+            localStorage.setItem('7mares-orders', JSON.stringify(orders));
+            localStorage.setItem('7mares-cart', JSON.stringify([]));
+            cart = [];
+            updateCartCount();
+
+            // Exibir confirmação
+            document.getElementById('order-details').innerHTML = `
+                <p><strong>Pedido:</strong> ${order.id}</p>
+                <p><strong>Cliente:</strong> ${order.customer}</p>
+                <p><strong>Email:</strong> ${order.email}</p>
+                <p><strong>Total:</strong> R$ ${order.total.toFixed(2)}</p>
+                <p><strong>Método de Pagamento:</strong> ${paymentMethod.toUpperCase()}</p>
+                <p style="color: var(--verde); font-weight: bold; margin-top: 1rem;">Código de Rastreamento: ${order.trackingCode}</p>
+                ${paymentMethod === 'pix' ? `<p style="margin-top: 1rem; color: var(--dourado);"><strong>Aguardando confirmação de pagamento PIX...</strong></p>` : ''}
+            `;
+
+            showPage('order-confirmed');
+            alert(`✅ Pedido criado! Número: ${order.id}\nRastreamento: ${order.trackingCode}`);
+        }
+
+        // ===== ADMIN =====
+        function switchAdminTab(tab) {
+            document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.admin-nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tab + '-section').classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function renderDashboard() {
+            const totalRevenue = orders.reduce((sum, order) => sum + order.total, 0);
+            document.getElementById('total-revenue').textContent = `R$ ${totalRevenue.toFixed(2)}`;
+            document.getElementById('total-orders').textContent = orders.length;
+            document.getElementById('total-products').textContent = products.length;
+        }
+
+        function renderAdminProducts() {
+            const tbody = document.getElementById('products-table');
+            document.getElementById('products-count').textContent = `${products.length} produtos cadastrados`;
+
+            if (products.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: var(--dourado);">Nenhum produto</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = products.map(product => `
+                <tr>
+                    <td>${product.name}</td>
+                    <td>R$ ${product.price.toFixed(2)}</td>
+                    <td>${product.category}</td>
+                    <td>${product.stock}</td>
+                </tr>
+            `).join('');
+        }
+
+        function addCoupon() {
+            const code = document.getElementById('coupon-code').value;
+            const discount = parseFloat(document.getElementById('coupon-discount').value);
+
+            if (!code || !discount) {
+                alert('Preencha todos os campos!');
+                return;
+            }
+
+            coupons.push({ code, discount, active: true });
+            localStorage.setItem('7mares-coupons', JSON.stringify(coupons));
+            alert('Cupom criado com sucesso!');
+            document.getElementById('coupon-code').value = '';
+            document.getElementById('coupon-discount').value = '';
+        }
+
+        function logoutAdmin() {
+            adminLoggedIn = false;
+            localStorage.setItem('7mares-admin', JSON.stringify(adminLoggedIn));
+            toggleAdmin();
+        }
+
+        // ===== UTILITÁRIOS =====
+        function openWhatsApp() {
+            const whatsappNumber = '558599999999';
+            const message = encodeURIComponent('Olá 7 Mares! Gostaria de informações sobre seus produtos. 🌊');
+            window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+        }
+
+        function trackOrder() {
+            const trackingNumber = document.getElementById('tracking-number').value;
+            const order = orders.find(o => o.id === trackingNumber || o.trackingCode === trackingNumber);
+            const result = document.getElementById('tracking-result');
+
+            if (order) {
+                result.innerHTML = `
+                    <div style="background-color: var(--cinza); border: 2px solid var(--dourado); border-radius: 8px; padding: 1.5rem;">
+                        <h3 style="color: var(--dourado); margin-bottom: 1rem;">Seu Pedido</h3>
+                        <p><strong>ID:</strong> ${order.id}</p>
+                        <p><strong>Status:</strong> <span class="status-badge status-${order.status}">${order.status.toUpperCase()}</span></p>
+                        <p><strong>Rastreamento:</strong> ${order.trackingCode}</p>
+                        <p><strong>Data:</strong> ${order.date}</p>
+                        <p><strong>Total:</strong> R$ ${order.total.toFixed(2)}</p>
+                    </div>
+                `;
+            } else {
+                result.innerHTML = '<p style="color: var(--vermelho); text-align: center;">Pedido não encontrado</p>';
+            }
+        }
+
+        function submitLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            currentUser = { email, password };
+            localStorage.setItem('7mares-user', JSON.stringify(currentUser));
+            alert('Login realizado com sucesso!');
+            showPage('home');
+        }
+
+        // Inicialização
+        updateCartCount();
+        renderHome();
+    </script>
+</body>
+</html>
